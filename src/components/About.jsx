@@ -39,6 +39,7 @@ const About = ({ workRef }) => {
       ".i",
       ".j",
       ".k",
+      '.hmm'
     ];
 
     elements.forEach((elClass) => {
@@ -69,7 +70,7 @@ const About = ({ workRef }) => {
         alt=""
       />
 
-      <div className="flex md:hidden flex-col justify-center items-center gap-8">
+      <div className="flex md:hidden hmm flex-col justify-center items-center gap-8">
         <div className="md:w-[24vw] w-[85vw] py-7 glass flex mt-[3vh] rounded-3xl gap-5 flex-col justify-center items-center bg-[#85E66C12]">
           <div className="text-[6vw] a text-center w-[90%] font-bold leading-none items-center text-white">
             Crafting <span>High-Quality</span> Websites With{" "}

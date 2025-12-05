@@ -46,7 +46,7 @@ const Footer = ({ scrollToSection }) => {
           <h3 className="font-semibold text-lg mb-1">Contact Info:</h3>
           <div className="flex flex-col opacity-80 leading-6">
             <a
-              href="mailto:iabdullah.official@gmail.com"
+              href="mailto:abdullah781.work@gmail.com"
               className="hover:text-[#85E66C] transition"
             >
               abdullah781.work@gmail.com
