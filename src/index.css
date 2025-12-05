@@ -47,7 +47,7 @@ body{
   box-shadow: 0 5px 22px 0 rgba(0, 0, 0, 0.37);
   color: white;
   z-index: 0;
-  transition: color 0.4s ease;
+  transition: color 0.5s ease;
 }
 
 .glass-btn::before {
@@ -56,10 +56,10 @@ body{
   top: 50%;
   left: 50%;
   width: 0;
-  height: 300%;
+  height: 1000%;
   background-color: #85E66C; /* hover color */
   transform: translate(-50%, -50%) rotate(45deg);
-  transition: width 0.4s ease;
+  transition: width 0.5s ease;
   z-index: -1; /* behind the text */
   border-radius: 50px;
 }
@@ -67,7 +67,7 @@ body{
 .glass-btn span {
   position: relative;
   z-index: 1;
-  transition: color 0.4s ease, font-weight 0.4s ease;
+  transition: color 0.5s ease, font-weight 0.4s ease;
 }
 
 .glass-btn:hover::before {
@@ -82,21 +82,19 @@ body{
 
 
 
-
-
 .glasst-btn {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, rgba(133, 230, 108, 0.4), rgba(133, 230, 108, 0.2)); /* pre-colored green glass */
+  background: linear-gradient(135deg, rgba(133, 230, 108, 0.4), rgba(133, 230, 108, 0.2));
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-radius: 50px;
   border-right: 1px solid rgba(255, 255, 255, 0.349);
   border-bottom: 1px solid rgba(255, 255, 255, 0.185);
   box-shadow: 0 5px 22px 0 rgba(0, 0, 0, 0.37);
-  color: white; 
+  color: white;
   z-index: 0;
-  transition: color 0.4s ease;
+  transition: color 0.5s ease;
 }
 
 .glasst-btn::before {
@@ -105,26 +103,26 @@ body{
   top: 50%;
   left: 50%;
   width: 0;
-  height: 300%;
-  background-color: rgb(255, 255, 255); 
+  height: 1000%; /* height kaafi bada rakha taake diagonal cover ho */
+  background-color: white; /* hover color */
   transform: translate(-50%, -50%) rotate(45deg);
-  transition: width 0.4s ease;
+  transition: width 0.5s ease;
   z-index: -1;
   border-radius: 50px;
+}
+
+.glasst-btn:hover::before {
+  width: 500%; /* ab chahe button wide ho, poora cover karega */
 }
 
 .glasst-btn span {
   position: relative;
   z-index: 1;
-  transition: color 0.4s ease, font-weight 0.4s ease;
-}
-
-.glasst-btn:hover::before {
-  width: 400%;
+  transition: color 0.5s ease, font-weight 0.4s ease;
 }
 
 .glasst-btn:hover span {
-  color: black ; 
+  color: black;
   font-weight: 500;
 }
 
@@ -138,7 +136,7 @@ body{
   font-weight: 600;
   cursor: pointer;
   z-index: 0;
-  transition: color 0.4s ease, background 0.4s ease;
+  transition: color 0.5s ease, background 0.4s ease;
 }
 
 .glassw-btn::before {
@@ -147,7 +145,7 @@ body{
   top: 50%;
   left: 50%;
   width: 0;
-  height: 300%;
+  height: 1000%;
   background: #85E66C ; /* hover glass color */
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -160,7 +158,7 @@ body{
 .glassw-btn span {
   position: relative;
   z-index: 1;
-  transition: color 0.4s ease, font-weight 0.4s ease;
+  transition: color 0.5s ease, font-weight 0.4s ease;
 }
 
 .glassw-btn:hover::before {

@@ -98,7 +98,7 @@ useEffect(() => {
                 </button>
 
 
-      <button className="glass text-white mb-15 mt-[3vh] text-5xl font-semibold py-4 px-10">
+      <button className="glass text-white md:mb-15 mb-8 md:mt-[3vh] mt-[12vh] text-2xl md:text-5xl font-semibold md:py-4 py-2 px-10">
         My Work:
       </button>
 
@@ -115,7 +115,7 @@ useEffect(() => {
           {visibleCards.map((card, i) => (
             <div
               key={i}
-              className="h-[50vh] w-[25vw] glass flex flex-col justify-start items-center text-white text-4xl font-bold"
+              className="h-[50vh] md:w-[25vw] w-[70vw]  glass flex flex-col justify-start items-center text-white text-4xl font-bold"
             >
               <div className=" my-4 h-[25vh] overflow-hidden rounded-3xl w-[90%]">
                 <img src={card.image} className="w-full h-full object-cover " />
