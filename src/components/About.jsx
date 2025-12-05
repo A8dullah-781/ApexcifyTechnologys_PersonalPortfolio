@@ -33,8 +33,8 @@ const About = ({workRef}) => {
 
   return (
         <div className='mx-[7.5vw] overflow-hidden flex h-[100vh]   '>
-        <img src="/images/shadow.png" className='absolute top-[100vh] left-[-180px] w-[30vw]' alt="" />
-        <img src="/images/shadow.png" className='absolute top-[150vh] right-[-180px] w-[30vw]' alt="" />
+        <img src="/images/shadow.png" className='absolute top-[100vh] hidden xl:block left-[-180px] w-[30vw]' alt="" />
+        <img src="/images/shadow.png" className='absolute top-[150vh] hidden xl:block right-[-180px] w-[30vw]' alt="" />
         <div className='w-[33vw] py-5 mt-[14vh] h-full'>
             <div className='h-1/2  w-full '>
             <div className='text-[5.2vw] font-semibold text-white'>About Me:</div>

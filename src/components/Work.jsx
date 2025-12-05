@@ -8,6 +8,7 @@ import { IoArrowDown } from "react-icons/io5";
 const Work = ({contactRef}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const wrapperRef = useRef(null);
+  const isMobile = window.innerWidth < 640;
 
    const handleScroll = () => {
     gsap.to(window, {
@@ -17,49 +18,52 @@ const Work = ({contactRef}) => {
     });
   };
 
-  
+const jump = isMobile ? 1 : 3;
 
-  const animateCards = (direction = "next") => {
-    const cardElements = wrapperRef.current.children;
+const animateCards = (direction = "next") => {
+  const cardElements = wrapperRef.current.children;
 
-    gsap.to(cardElements, {
-      x: direction === "next" ? -100 : 100,
-      opacity: 0,
-      scale: 0.8,
-      stagger: 0.05,
-      duration: 0.4,
-      ease: "power3.inOut",
-      onComplete: () => {
-        if (direction === "next") {
-          setCurrentIndex((prev) => (prev + 3) % cards.length);
-        } else {
-          setCurrentIndex((prev) => (prev - 3 + cards.length) % cards.length);
+  gsap.to(cardElements, {
+    x: direction === "next" ? -100 : 100,
+    opacity: 0,
+    scale: 0.8,
+    stagger: isMobile ? 0 : 0.05,
+    duration: 0.4,
+    ease: "power3.inOut",
+    onComplete: () => {
+      if (direction === "next") {
+        setCurrentIndex(prev => (prev + jump) % cards.length);
+      } else {
+        setCurrentIndex(prev => (prev - jump + cards.length) % cards.length);
+      }
+
+      gsap.fromTo(
+        cardElements,
+        { x: direction === "next" ? 100 : -100, opacity: 0, scale: 0.8 },
+        {
+          x: 0,
+          opacity: 1,
+          scale: 1,
+          stagger: isMobile ? 0 : 0.05,
+          duration: 0.4,
+          ease: "power3.out"
         }
-
-        gsap.fromTo(
-          cardElements,
-          { x: direction === "next" ? 100 : -100, opacity: 0, scale: 0.8 },
-          {
-            x: 0,
-            opacity: 1,
-            scale: 1,
-            stagger: 0.05,
-            duration: 0.4,
-            ease: "power3.out",
-          }
-        );
-      },
-    });
-  };
+      );
+    }
+  });
+};
 
   const nextCards = () => animateCards("next");
   const prevCards = () => animateCards("prev");
 
-  const visibleCards = [
-    cards[currentIndex % cards.length],
-    cards[(currentIndex + 1) % cards.length],
-    cards[(currentIndex + 2) % cards.length],
-  ];
+
+const visibleCards = isMobile
+  ? [cards[currentIndex]]
+  : [
+      cards[currentIndex % cards.length],
+      cards[(currentIndex + 1) % cards.length],
+      cards[(currentIndex + 2) % cards.length],
+    ];
 
 
 
@@ -81,13 +85,13 @@ useEffect(() => {
 
   return (
     <div className="flex flex-col justify-center items-center">
-       <button ref={contactRef} onClick={handleScroll} className="glass-btn bounce px-3 py-3 absolute top-[80vh] left-[43vw]">
+       <button ref={contactRef} onClick={handleScroll} className="glass-btn hidden lg:block bounce px-3 py-3 absolute top-[80vh] left-[43vw]">
                   <span className="text-white font-bold text-xl">
                     <IoArrowDown />
                   </span>
                 </button>
                 
-       <button ref={contactRef} onClick={handleScroll} className="glass-btn bounce px-3 py-3 absolute top-[73vh] right-[43vw]">
+       <button ref={contactRef} onClick={handleScroll} className="glass-btn hidden lg:block bounce px-3 py-3 absolute top-[73vh] right-[43vw]">
                   <span className="text-white font-bold text-xl">
                     <IoArrowDown />
                   </span>
