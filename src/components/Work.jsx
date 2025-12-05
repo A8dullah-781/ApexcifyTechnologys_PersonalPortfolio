@@ -5,8 +5,10 @@ import { cards } from "../../constants/constants";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { IoArrowDown } from "react-icons/io5";
 import { useSwipeable } from "react-swipeable"; // <--- added
+import { MdKeyboardDoubleArrowRight } from "react-icons/md";
+import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
 
-const Work = ({contactRef}) => {
+const Work = ({ contactRef }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const wrapperRef = useRef(null);
   const isMobile = window.innerWidth < 640;
@@ -19,7 +21,16 @@ const Work = ({contactRef}) => {
     });
   };
 
-  const jump = isMobile ? 1 : 3;
+let cardsToShow;
+if (window.innerWidth < 640) {
+  cardsToShow = 1; // mobile
+} else if (window.innerWidth < 1024) {
+  cardsToShow = 2; // tablet
+} else {
+  cardsToShow = 3; // desktop
+}
+
+  const jump = cardsToShow;
 
   const animateCards = (direction = "next") => {
     const cardElements = wrapperRef.current.children;
@@ -33,9 +44,11 @@ const Work = ({contactRef}) => {
       ease: "power3.inOut",
       onComplete: () => {
         if (direction === "next") {
-          setCurrentIndex(prev => (prev + jump) % cards.length);
+          setCurrentIndex((prev) => (prev + jump) % cards.length);
         } else {
-          setCurrentIndex(prev => (prev - jump + cards.length) % cards.length);
+          setCurrentIndex(
+            (prev) => (prev - jump + cards.length) % cards.length
+          );
         }
 
         gsap.fromTo(
@@ -47,24 +60,20 @@ const Work = ({contactRef}) => {
             scale: 1,
             stagger: isMobile ? 0 : 0.05,
             duration: 0.4,
-            ease: "power3.out"
+            ease: "power3.out",
           }
         );
-      }
+      },
     });
   };
 
   const nextCards = () => animateCards("next");
   const prevCards = () => animateCards("prev");
 
-  const visibleCards = isMobile
-    ? [cards[currentIndex]]
-    : [
-        cards[currentIndex % cards.length],
-        cards[(currentIndex + 1) % cards.length],
-        cards[(currentIndex + 2) % cards.length],
-      ];
-
+const visibleCards = [];
+for (let i = 0; i < cardsToShow; i++) {
+  visibleCards.push(cards[(currentIndex + i) % cards.length]);
+}
   // Swipe handlers
   const handlers = useSwipeable({
     onSwipedLeft: () => nextCards(),
@@ -74,7 +83,7 @@ const Work = ({contactRef}) => {
   });
 
   useEffect(() => {
-    gsap.to('.bounce', {
+    gsap.to(".bounce", {
       y: 10,
       duration: 1,
       repeat: -1,
@@ -83,25 +92,57 @@ const Work = ({contactRef}) => {
     });
   }, []);
 
+  const boxRef = useRef(null);
+  const boxtRef = useRef(null);
+
+  useEffect(() => {
+    gsap.to(boxtRef.current, {
+      x: 10,
+      duration: 1,
+      repeat: -1,
+      yoyo: true,
+      ease: "power1.inOut",
+    });
+    
+  }, []);
+
+  useEffect(() => {
+    gsap.to(boxRef.current, {
+      x: 10,
+      duration: 1,
+      repeat: -1,
+      yoyo: true,
+      ease: "power1.inOut",
+    });
+  }, [])
+  
+
+
   gsap.registerPlugin(ScrollToPlugin);
 
   return (
     <div className="flex flex-col justify-center items-center" {...handlers}>
+      <button
+        ref={contactRef}
+        onClick={handleScroll}
+        className="glass-btn hidden lg:block bounce px-3 py-3 absolute top-[80vh] left-[43vw]"
+      >
+        <span className="text-white font-bold text-xl">
+          <IoArrowDown />
+        </span>
+      </button>
 
-       <button ref={contactRef} onClick={handleScroll} className="glass-btn hidden lg:block bounce px-3 py-3 absolute top-[80vh] left-[43vw]">
-                  <span className="text-white font-bold text-xl">
-                    <IoArrowDown />
-                  </span>
-                </button>
-                
-       <button ref={contactRef} onClick={handleScroll} className="glass-btn hidden lg:block bounce px-3 py-3 absolute top-[73vh] right-[43vw]">
-                  <span className="text-white font-bold text-xl">
-                    <IoArrowDown />
-                  </span>
-                </button>
+      <button
+        ref={contactRef}
+        onClick={handleScroll}
+        className="glass-btn hidden lg:block bounce px-3 py-3 absolute top-[73vh] right-[43vw]"
+      >
+        <span className="text-white font-bold text-xl">
+          <IoArrowDown />
+        </span>
+      </button>
 
-
-      <button className="glass text-white md:mb-15 mb-8 md:mt-[3vh] mt-[12vh] text-2xl md:text-5xl font-semibold md:py-4 py-2 px-10">
+      <button className="glass text-white md:mb-15 mb-8 md:mt-[3vh] mt-[12vh] text-3xl md:text-5xl font-semibold md:py-4 py-2 px-10">
         My Work:
       </button>
 
@@ -114,13 +155,13 @@ const Work = ({contactRef}) => {
             <IoMdArrowRoundBack />
           </span>
         </button>
-        <div ref={wrapperRef} className="flex gap-5">
+        <div ref={wrapperRef} className="flex md:flex-row flex-col gap-5">
           {visibleCards.map((card, i) => (
             <div
               key={i}
-              className="h-[50vh] md:w-[25vw] w-[80vw]  glass flex flex-col justify-start items-center text-white text-4xl font-bold"
+              className="h-[50vh] lg:h-[50vh] md:h-[30vh] lg:w-[25vw] md:w-[35vw] w-[80vw]  glass flex flex-col justify-start items-center text-white text-4xl font-bold"
             >
-              <div className=" my-4 h-[25vh] overflow-hidden rounded-3xl w-[90%]">
+              <div className=" my-4 lg:h-[25vh] md:h-[18vh] h-[25vh] overflow-hidden rounded-3xl w-[90%]">
                 <img src={card.image} className="w-full h-full object-cover " />
               </div>
               <div className="px-6">
@@ -147,6 +188,18 @@ const Work = ({contactRef}) => {
               </div>
             </div>
           ))}
+          <div className="md:hidden text-white flex justify-center items-center text-sm">
+            {" "}
+            <div  ref={boxRef}><MdKeyboardDoubleArrowLeft /></div>
+            
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span>Swipe </span>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{" "}
+          
+          <div  ref={boxtRef}>
+            {" "}
+            <MdKeyboardDoubleArrowRight />
+          </div>
+          </div>
         </div>
 
         <button
@@ -157,8 +210,6 @@ const Work = ({contactRef}) => {
             <IoMdArrowRoundForward />
           </span>
         </button>
-
-
       </div>
     </div>
   );
