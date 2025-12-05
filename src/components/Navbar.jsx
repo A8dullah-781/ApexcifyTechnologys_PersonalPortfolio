@@ -2,7 +2,7 @@ import React from "react";
 
 const Navbar = () => {
   return (
-    <div className="sticky z-50 mx-auto m-4 text-white flex justify-between items-center px-10 top-3 m- h-[12vh] w-[85vw] glass">
+    <div className="sticky z-50 mx-auto m-4 text-white flex justify-between items-center px-10 top-3 m- h-[12vh] bg-black/10 w-[85vw] glass">
       <div>
         <img
           src="/images/Logo.png"

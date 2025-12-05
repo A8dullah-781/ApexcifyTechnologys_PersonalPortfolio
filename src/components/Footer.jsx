@@ -46,7 +46,7 @@ const Footer = () => {
             <a href="mailto:iabdullah.official@gmail.com" className="hover:text-[#85E66C] transition">
               abdullah781.work@gmail.com
             </a>
-            <p className="mt-1">+92 332 0003300</p>
+            <p className="mt-1">+92 310 4993978</p>
           </div>
         </div>
 
