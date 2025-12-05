@@ -4,13 +4,14 @@ import { IoMdArrowRoundBack, IoMdArrowRoundForward } from "react-icons/io";
 import { cards } from "../../constants/constants";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { IoArrowDown } from "react-icons/io5";
+import { useSwipeable } from "react-swipeable"; // <--- added
 
 const Work = ({contactRef}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const wrapperRef = useRef(null);
   const isMobile = window.innerWidth < 640;
 
-   const handleScroll = () => {
+  const handleScroll = () => {
     gsap.to(window, {
       duration: 0.7,
       scrollTo: contactRef.current.offsetTop + 100,
@@ -18,73 +19,75 @@ const Work = ({contactRef}) => {
     });
   };
 
-const jump = isMobile ? 1 : 3;
+  const jump = isMobile ? 1 : 3;
 
-const animateCards = (direction = "next") => {
-  const cardElements = wrapperRef.current.children;
+  const animateCards = (direction = "next") => {
+    const cardElements = wrapperRef.current.children;
 
-  gsap.to(cardElements, {
-    x: direction === "next" ? -100 : 100,
-    opacity: 0,
-    scale: 0.8,
-    stagger: isMobile ? 0 : 0.05,
-    duration: 0.4,
-    ease: "power3.inOut",
-    onComplete: () => {
-      if (direction === "next") {
-        setCurrentIndex(prev => (prev + jump) % cards.length);
-      } else {
-        setCurrentIndex(prev => (prev - jump + cards.length) % cards.length);
-      }
-
-      gsap.fromTo(
-        cardElements,
-        { x: direction === "next" ? 100 : -100, opacity: 0, scale: 0.8 },
-        {
-          x: 0,
-          opacity: 1,
-          scale: 1,
-          stagger: isMobile ? 0 : 0.05,
-          duration: 0.4,
-          ease: "power3.out"
+    gsap.to(cardElements, {
+      x: direction === "next" ? -100 : 100,
+      opacity: 0,
+      scale: 0.8,
+      stagger: isMobile ? 0 : 0.05,
+      duration: 0.4,
+      ease: "power3.inOut",
+      onComplete: () => {
+        if (direction === "next") {
+          setCurrentIndex(prev => (prev + jump) % cards.length);
+        } else {
+          setCurrentIndex(prev => (prev - jump + cards.length) % cards.length);
         }
-      );
-    }
-  });
-};
+
+        gsap.fromTo(
+          cardElements,
+          { x: direction === "next" ? 100 : -100, opacity: 0, scale: 0.8 },
+          {
+            x: 0,
+            opacity: 1,
+            scale: 1,
+            stagger: isMobile ? 0 : 0.05,
+            duration: 0.4,
+            ease: "power3.out"
+          }
+        );
+      }
+    });
+  };
 
   const nextCards = () => animateCards("next");
   const prevCards = () => animateCards("prev");
 
+  const visibleCards = isMobile
+    ? [cards[currentIndex]]
+    : [
+        cards[currentIndex % cards.length],
+        cards[(currentIndex + 1) % cards.length],
+        cards[(currentIndex + 2) % cards.length],
+      ];
 
-const visibleCards = isMobile
-  ? [cards[currentIndex]]
-  : [
-      cards[currentIndex % cards.length],
-      cards[(currentIndex + 1) % cards.length],
-      cards[(currentIndex + 2) % cards.length],
-    ];
-
-
-
-
-useEffect(() => {
-  gsap.to('.bounce', {
-    y: 10,
-    duration: 1,
-    repeat: -1,
-    yoyo: true,
-    ease: "power1.inOut",
+  // Swipe handlers
+  const handlers = useSwipeable({
+    onSwipedLeft: () => nextCards(),
+    onSwipedRight: () => prevCards(),
+    preventDefaultTouchmoveEvent: true,
+    trackMouse: false, // only touch devices
   });
-}, []);
 
+  useEffect(() => {
+    gsap.to('.bounce', {
+      y: 10,
+      duration: 1,
+      repeat: -1,
+      yoyo: true,
+      ease: "power1.inOut",
+    });
+  }, []);
 
-
-  
   gsap.registerPlugin(ScrollToPlugin);
 
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center" {...handlers}>
+
        <button ref={contactRef} onClick={handleScroll} className="glass-btn hidden lg:block bounce px-3 py-3 absolute top-[80vh] left-[43vw]">
                   <span className="text-white font-bold text-xl">
                     <IoArrowDown />
@@ -105,7 +108,7 @@ useEffect(() => {
       <div className="flex items-center gap-5 mb-10">
         <button
           onClick={prevCards}
-          className="glasst-btn px-5 py-5 text-xl font-bold"
+          className="glasst-btn hidden md:block px-5 py-5 text-xl font-bold"
         >
           <span>
             <IoMdArrowRoundBack />
@@ -115,7 +118,7 @@ useEffect(() => {
           {visibleCards.map((card, i) => (
             <div
               key={i}
-              className="h-[50vh] md:w-[25vw] w-[70vw]  glass flex flex-col justify-start items-center text-white text-4xl font-bold"
+              className="h-[50vh] md:w-[25vw] w-[80vw]  glass flex flex-col justify-start items-center text-white text-4xl font-bold"
             >
               <div className=" my-4 h-[25vh] overflow-hidden rounded-3xl w-[90%]">
                 <img src={card.image} className="w-full h-full object-cover " />
@@ -148,7 +151,7 @@ useEffect(() => {
 
         <button
           onClick={nextCards}
-          className="glasst-btn px-5 py-5 text-xl font-bold"
+          className="glasst-btn  hidden md:block px-5 py-5 text-xl font-bold"
         >
           <span>
             <IoMdArrowRoundForward />
