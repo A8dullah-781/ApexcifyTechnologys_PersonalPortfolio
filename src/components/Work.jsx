@@ -142,7 +142,7 @@ for (let i = 0; i < cardsToShow; i++) {
         </span>
       </button>
 
-      <button className="glass text-white md:mb-15 mb-8 md:mt-[3vh] mt-[12vh] text-3xl md:text-5xl font-semibold md:py-4 py-2 px-10">
+      <button className="glass text-white md:mb-15 mb-8 md:mt-[3vh] mt-[2vh] text-3xl md:text-5xl font-semibold md:py-4 py-2 px-10">
         My Work:
       </button>
 
@@ -192,8 +192,8 @@ for (let i = 0; i < cardsToShow; i++) {
             {" "}
             <div  ref={boxRef}><MdKeyboardDoubleArrowLeft /></div>
             
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span>Swipe </span>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{" "}
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span>Swipe </span>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{" "}
           
           <div  ref={boxtRef}>
             {" "}
