@@ -149,9 +149,9 @@ const Work = ({ contactRef }) => {
       <button
         ref={contactRef}
         onClick={handleScroll}
-        className="glass-btn hidden lg:block bounce px-3 py-3 absolute top-[80vh] left-[43vw]"
+        className="glass-btn hidden lg:block bounce hover:text-black px-3 py-3 absolute top-[80vh] left-[43vw]"
       >
-        <IoArrowDown className="text-white text-xl" />
+       <span> <IoArrowDown className="  text-xl" /></span>
       </button>
 
       <button
@@ -159,7 +159,7 @@ const Work = ({ contactRef }) => {
         onClick={handleScroll}
         className="glass-btn hidden lg:block bounce px-3 py-3 absolute top-[73vh] right-[43vw]"
       >
-        <IoArrowDown className="text-white text-xl" />
+       <span> <IoArrowDown className="text-xl" /></span>
       </button>
 
       <button className="glass text-white md:mb-15 mb-8 md:mt-[3vh] mt-[12vh] text-3xl md:text-5xl font-semibold work-title px-6 py-4">
@@ -171,7 +171,7 @@ const Work = ({ contactRef }) => {
           onClick={prevCards}
           className="glasst-btn hidden md:block px-5 py-5 text-xl font-bold"
         >
-          <IoMdArrowRoundBack />
+        <span>  <IoMdArrowRoundBack /></span>
         </button>
 
         <div ref={wrapperRef} className="flex md:flex-row flex-col gap-5">
@@ -222,7 +222,7 @@ const Work = ({ contactRef }) => {
           onClick={nextCards}
           className="glasst-btn hidden md:block px-5 py-5 text-xl font-bold"
         >
-          <IoMdArrowRoundForward />
+          <span><IoMdArrowRoundForward /></span>
         </button>
       </div>
     </div>

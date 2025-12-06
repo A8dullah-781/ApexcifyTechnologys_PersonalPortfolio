@@ -46,7 +46,7 @@ const About = ({ workRef }) => {
       gsap.from(elClass, {
         scrollTrigger: {
           trigger: elClass,
-          start: "top 90%", 
+          start: "top 80%", 
           toggleActions: "play none none none",
         },
         y: 20,

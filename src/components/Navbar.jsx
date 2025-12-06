@@ -4,10 +4,14 @@ import { gsap } from "gsap";
 
 const Navbar = ({ scrollToSection }) => {
   const [open, setOpen] = useState(false);
+  const [hideNav, setHideNav] = useState(false);
+
   const navRef = useRef(null);
+  const lastScroll = useRef(0);
 
   const linkClass = "relative group cursor-pointer transition-all duration-300";
 
+  // GSAP intro animation
   useEffect(() => {
     gsap.from(navRef.current, {
       width: "0",
@@ -17,14 +21,36 @@ const Navbar = ({ scrollToSection }) => {
     });
   }, []);
 
+  // Mobile hide/show on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.innerWidth >= 768) return; // Desktop untouched
+
+      const current = window.scrollY;
+
+      if (current > lastScroll.current && current > 50) {
+        setHideNav(true); // scrolling down → hide
+      } else {
+        setHideNav(false); // scrolling up → show
+      }
+
+      lastScroll.current = current;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <div
       ref={navRef}
-      className="sticky top-3 z-50 mx-auto m-4 w-[90vw] rounded-2xl bg-black/10 backdrop-blur-sm text-white overflow-hidden transition-all glass duration-500 ease-out"
+      className={`sticky top-3 z-50 mx-auto m-4 w-[90vw] rounded-2xl bg-black/10 backdrop-blur-sm text-white overflow-hidden transition-all glass duration-500 ease-out
+      ${hideNav ? "-translate-y-[120%]" : "translate-y-0"} 
+      md:translate-y-0`}
       style={{ height: open ? "400px" : "70px" }}
     >
       <div className="flex justify-between items-center px-6 sm:px-10 h-18">
-       
+
         <div>
           <img
             src="/images/Logo.png"
@@ -35,26 +61,17 @@ const Navbar = ({ scrollToSection }) => {
 
         <div className="hidden md:flex justify-center gap-10 items-center">
           <div className="flex gap-10">
-            <button
-              onClick={() => scrollToSection("home")}
-              className={linkClass}
-            >
+            <button onClick={() => scrollToSection("home")} className={linkClass}>
               Home
               <span className="absolute bottom-[-4px] left-1/2 w-0 h-[1px] bg-white transition-all duration-300 ease-out group-hover:w-full group-hover:left-0" />
             </button>
 
-            <button
-              onClick={() => scrollToSection("about")}
-              className={linkClass}
-            >
+            <button onClick={() => scrollToSection("about")} className={linkClass}>
               About Me
               <span className="absolute bottom-[-4px] left-1/2 w-0 h-[1px] bg-white transition-all duration-300 ease-out group-hover:w-full group-hover:left-0" />
             </button>
 
-            <button
-              onClick={() => scrollToSection("work")}
-              className={linkClass}
-            >
+            <button onClick={() => scrollToSection("work")} className={linkClass}>
               My Work
               <span className="absolute bottom-[-4px] left-1/2 w-0 h-[1px] bg-white transition-all duration-300 ease-out group-hover:w-full group-hover:left-0" />
             </button>
@@ -64,10 +81,11 @@ const Navbar = ({ scrollToSection }) => {
             onClick={() => scrollToSection("contact")}
             className="glass-btn px-6 py-3"
           >
-            Contact Me
+            <span>Contact Me</span>
           </button>
         </div>
 
+        {/* Mobile Menu Button */}
         <div
           onClick={() => setOpen(!open)}
           className="md:hidden cursor-pointer flex flex-col justify-center items-center h-5 w-6 relative"
@@ -87,6 +105,7 @@ const Navbar = ({ scrollToSection }) => {
         </div>
       </div>
 
+      {/* Mobile dropdown */}
       <div
         className={`md:hidden flex flex-col items-center justify-center gap-3 transition-opacity duration-500 ${
           open ? "opacity-100" : "opacity-0"
@@ -121,28 +140,13 @@ const Navbar = ({ scrollToSection }) => {
         </button>
 
         <div className="flex gap-4 mt-4">
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://www.linkedin.com/in/abdullah---/"
-            className="hover:text-[#85E66C] hover:scale-95 transition"
-          >
+          <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/abdullah---/" className="hover:text-[#85E66C] hover:scale-95 transition">
             <FaLinkedin />
           </a>
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://github.com/A8dullah-781"
-            className="hover:text-[#85E66C] hover:scale-95 transition"
-          >
+          <a target="_blank" rel="noopener noreferrer" href="https://github.com/A8dullah-781" className="hover:text-[#85E66C] hover:scale-95 transition">
             <FaGithub />
           </a>
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://www.instagram.com/a8dullah_781/"
-            className="hover:text-[#85E66C] hover:scale-95 transition"
-          >
+          <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/a8dullah_781/" className="hover:text-[#85E66C] hover:scale-95 transition">
             <FaInstagram />
           </a>
           <a
