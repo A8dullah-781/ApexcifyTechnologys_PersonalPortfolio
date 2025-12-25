@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
 import { IoMdArrowRoundBack, IoMdArrowRoundForward } from "react-icons/io";
-import { cards } from "../../constants/constants";
+import { cards } from "../../constants/constants"; 
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { IoArrowDown } from "react-icons/io5";
 import { useSwipeable } from "react-swipeable";
@@ -32,24 +32,25 @@ const Work = ({ contactRef }) => {
   const jump = cardsToShow;
 
   const animateCards = (direction = "next") => {
-    const cardElements = wrapperRef.current.children;
-    gsap.to(cardElements, {
-      x: direction === "next" ? -100 : 100,
-      opacity: 0,
-      scale: 0.8,
-      stagger: isMobile ? 0 : 0.05,
-      duration: 0.4,
-      ease: "power3.inOut",
-      onComplete: () => {
-        if (direction === "next")
-          setCurrentIndex((prev) => (prev + jump) % cards.length);
-        else
-          setCurrentIndex(
-            (prev) => (prev - jump + cards.length) % cards.length
-          );
+  const oldCards = [...wrapperRef.current.children];
 
+  gsap.to(oldCards, {
+    x: direction === "next" ? -100 : 100,
+    opacity: 0,
+    scale: 0.8,
+    stagger: isMobile ? 0 : 0.05,
+    duration: 0.4,
+    ease: "power3.inOut",
+    onComplete: () => {
+      setCurrentIndex((prev) => {
+        if (direction === "next") return (prev + jump) % cards.length;
+        else return (prev - jump + cards.length) % cards.length;
+      });
+
+      requestAnimationFrame(() => {
+        const newCards = [...wrapperRef.current.children];
         gsap.fromTo(
-          cardElements,
+          newCards,
           { x: direction === "next" ? 100 : -100, opacity: 0, scale: 0.8 },
           {
             x: 0,
@@ -60,9 +61,11 @@ const Work = ({ contactRef }) => {
             ease: "power3.out",
           }
         );
-      },
-    });
-  };
+      });
+    },
+  });
+};
+
 
   const nextCards = () => animateCards("next");
   const prevCards = () => animateCards("prev");
@@ -151,7 +154,10 @@ const Work = ({ contactRef }) => {
         onClick={handleScroll}
         className="glass-btn hidden lg:block bounce hover:text-black px-3 py-3 absolute top-[80vh] left-[43vw]"
       >
-       <span> <IoArrowDown className="  text-xl" /></span>
+        <span>
+          {" "}
+          <IoArrowDown className="  text-xl" />
+        </span>
       </button>
 
       <button
@@ -159,7 +165,10 @@ const Work = ({ contactRef }) => {
         onClick={handleScroll}
         className="glass-btn hidden lg:block bounce px-3 py-3 absolute top-[73vh] right-[43vw]"
       >
-       <span> <IoArrowDown className="text-xl" /></span>
+        <span>
+          {" "}
+          <IoArrowDown className="text-xl" />
+        </span>
       </button>
 
       <button className="glass text-white md:mb-15 mb-8 md:mt-[3vh] mt-[12vh] text-3xl md:text-5xl font-semibold work-title px-6 py-4">
@@ -171,17 +180,20 @@ const Work = ({ contactRef }) => {
           onClick={prevCards}
           className="glasst-btn hidden md:block px-5 py-5 text-xl font-bold"
         >
-        <span>  <IoMdArrowRoundBack /></span>
+          <span> <IoMdArrowRoundBack /></span>
         </button>
 
         <div ref={wrapperRef} className="flex md:flex-row flex-col gap-5">
-          {visibleCards.map((card, i) => (
+          {visibleCards.map((card) => (
             <div
-              key={i}
+              key={card.id} 
               className="h-[50vh] lg:h-[50vh] md:h-[30vh] lg:w-[25vw] md:w-[35vw] w-[80vw] glass flex flex-col justify-start items-center text-white text-4xl font-bold card-item"
             >
               <div className="my-4 lg:h-[25vh] md:h-[18vh] h-[25vh] overflow-hidden rounded-3xl w-[90%]">
-                <img src={card.image} className="w-full h-full object-cover" />
+                <img
+                  src={card.image}
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div className="px-6">
                 <div className="flex justify-between items-start">

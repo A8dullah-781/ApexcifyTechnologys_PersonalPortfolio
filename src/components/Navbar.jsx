@@ -11,7 +11,6 @@ const Navbar = ({ scrollToSection }) => {
 
   const linkClass = "relative group cursor-pointer transition-all duration-300";
 
-  // GSAP intro animation
   useEffect(() => {
     gsap.from(navRef.current, {
       width: "0",
@@ -21,17 +20,16 @@ const Navbar = ({ scrollToSection }) => {
     });
   }, []);
 
-  // Mobile hide/show on scroll
   useEffect(() => {
     const handleScroll = () => {
-      if (window.innerWidth >= 768) return; // Desktop untouched
+      if (window.innerWidth >= 768) return;
 
       const current = window.scrollY;
 
       if (current > lastScroll.current && current > 50) {
-        setHideNav(true); // scrolling down → hide
+        setHideNav(true); 
       } else {
-        setHideNav(false); // scrolling up → show
+        setHideNav(false);
       }
 
       lastScroll.current = current;
@@ -85,7 +83,6 @@ const Navbar = ({ scrollToSection }) => {
           </button>
         </div>
 
-        {/* Mobile Menu Button */}
         <div
           onClick={() => setOpen(!open)}
           className="md:hidden cursor-pointer flex flex-col justify-center items-center h-5 w-6 relative"
@@ -105,7 +102,6 @@ const Navbar = ({ scrollToSection }) => {
         </div>
       </div>
 
-      {/* Mobile dropdown */}
       <div
         className={`md:hidden flex flex-col items-center justify-center gap-3 transition-opacity duration-500 ${
           open ? "opacity-100" : "opacity-0"

@@ -1,5 +1,6 @@
 const cards = [
   {
+    id: 1,
     name: "ChapterOne Lhr",
     year: 2025,
     image: "/images/pone.PNG",
@@ -7,6 +8,7 @@ const cards = [
     url: "https://a8dullah-chapter-one.vercel.app/"
   },
   {
+    id: 2,
     name: "Mojito Cocktails",
     year: 2025,
     image: "/images/ptwo.PNG",
@@ -14,6 +16,7 @@ const cards = [
     url: "https://a8dullah-mojito-cocktails.vercel.app/"
   },
   {
+    id: 3,
     name: "Creative Agency",
     year: 2025,
     image: "/images/pthree.PNG",
@@ -21,6 +24,7 @@ const cards = [
     url: "https://a8dullah-k72.vercel.app/"
   },
   {
+    id: 4,
     name: "Interactive Portfolio",
     year: 2025,
     image: "/images/pfour.PNG",
@@ -28,6 +32,7 @@ const cards = [
     url: "https://a8dullah-portfolio.vercel.app/"
   },
   {
+    id: 5,
     name: "Product Listing Site",
     year: 2025,
     image: "/images/pfive.PNG",
@@ -35,6 +40,7 @@ const cards = [
     url: "https://a8dullah-ecom.vercel.app/"
   },
   {
+    id: 6,
     name: "Apexcify Technologys",
     year: 2025,
     image: "/images/psix.PNG",
