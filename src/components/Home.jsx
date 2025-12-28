@@ -71,16 +71,16 @@ const Home = ({ aboutRef, scrollToSection }) => {
   return (
     <div className="relative xl:min-h-[85vh] py-5 gap-2 overflow-hidden flex flex-col md:justify-evenly justify-start items-center  md:items-start px-[7.5vw]  font-semibold leading-none">
       <img
-        src="/images/bgmain.png"
+        src="/images/bgmain.webp"
         className="absolute me hidden md:block  md:right-5 lg:right-14 md:w-[42vw] lg:w-[40vw] 
       bottom-0"
-        alt=""
+        alt="main_background"
       />
       <img
-        src="/images/memain.png"
+        src="/images/memain.webp"
         className="absolute me hidden md:block  md:right-5 lg:right-25 md:w-[42vw] lg:w-[30vw] 
       bottom-0"
-        alt=""
+        alt="main_picture"
       />
       <div>
         <div className="flex tone flex-row justify-center items-center gap-2 md:text-[5vw] text-[8.5vw] lg:text-[5.2vw]">

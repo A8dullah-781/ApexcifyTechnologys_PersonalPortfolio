@@ -8,9 +8,9 @@ const Footer = ({ scrollToSection }) => {
         <div className="flex gap-4">
           <div className="text-[#85E66C] flex flex-col justify-center items-start gap-3 text-4xl font-extrabold select-none">
             <img
-              src="/images/Logo.png"
+              src="/images/Logo.webp"
               className="w-14 hover:scale-95 mt-1"
-              alt=""
+              alt="logo"
             />
           </div>
         </div>

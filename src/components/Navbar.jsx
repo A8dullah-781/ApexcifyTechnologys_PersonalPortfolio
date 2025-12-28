@@ -51,7 +51,7 @@ const Navbar = ({ scrollToSection }) => {
 
         <div>
           <img
-            src="/images/Logo.png"
+            src="/images/Logo.webp"
             alt="Logo"
             className="w-14 transition-transform duration-300 ease-out hover:scale-90"
           />

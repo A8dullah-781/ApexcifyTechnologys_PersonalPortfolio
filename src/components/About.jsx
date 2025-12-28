@@ -33,7 +33,6 @@ const About = ({ workRef }) => {
       ".d",
       ".e",
       ".pp",
-      ".f",
       ".g",
       ".h",
       ".i",
@@ -60,14 +59,14 @@ const About = ({ workRef }) => {
   return (
     <div className="mx-[7.5vw] md:flex-row flex-col overflow-hidden flex xl:min-h-[70vh]">
       <img
-        src="/images/shadow.png"
+        src="/images/shadow.webp"
         className="absolute top-[100vh] hidden xl:block left-[-180px] w-[30vw]"
-        alt=""
+        alt="shadow"
       />
       <img
-        src="/images/shadow.png"
+        src="/images/shadow.webp"
         className="absolute top-[150vh] hidden xl:block right-[-180px] w-[30vw]"
-        alt=""
+        alt="shadow"
       />
 
       <div className="flex md:hidden hmm flex-col justify-center items-center gap-8">
@@ -81,9 +80,9 @@ const About = ({ workRef }) => {
           </button>
         </div>
         <img
-          src="/images/meabout.png"
+          src="/images/meabout.webp"
           className="w-[85vw] block md:hidden "
-          alt=""
+          alt="about_picture"
         />
       </div>
 
@@ -110,7 +109,7 @@ const About = ({ workRef }) => {
             </span>
           </button>
           <img
-            src="/images/arrow.png"
+            src="/images/arrow.webp"
             className="w-[16vw] g hidden lg:block md:mt-10 lg:mt-0"
             alt="arrow"
           />
@@ -125,7 +124,7 @@ const About = ({ workRef }) => {
         <button className="glasst-btn pp py-2 text-lg font-semibold px-4 bg-white rounded-4xl">
           <span>Let's Connect</span>
         </button>
-        <img src="/images/meabout.png" className="w-[16vw] h" alt="" />
+        <img src="/images/meabout.webp" className="w-[16vw] h" alt="about_picture" />
       </div>
 
       <div className="lg:w-[33vw] md:w-[43vw] w-[85vw] mt-[3vh] lg:mt-[14vh] py-5 flex justify-center items-center gap-8 flex-col h-full pl-3 ">

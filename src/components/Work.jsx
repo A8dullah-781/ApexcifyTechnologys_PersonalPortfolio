@@ -192,6 +192,7 @@ const Work = ({ contactRef }) => {
               <div className="my-4 lg:h-[25vh] md:h-[18vh] h-[25vh] overflow-hidden rounded-3xl w-[90%]">
                 <img
                   src={card.image}
+                  alt="project_picture"
                   className="w-full h-full object-cover"
                 />
               </div>
