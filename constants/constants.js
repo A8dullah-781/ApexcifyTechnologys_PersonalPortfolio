@@ -17,6 +17,14 @@ const cards = [
   },
   {
     id: 3,
+    name: "Linea Architects",
+    year: 2025,
+    image: "/images/linea.webp",
+    description: "A modern architecture website showcasing innovative residential and commercial designs, client testimonials with smooth scrolling and interactive sections.",
+    url: "https://linea-architects.vercel.app/"
+  },
+  {
+    id: 4,
     name: "Creative Agency",
     year: 2025,
     image: "/images/pthree.webp",
@@ -24,7 +32,7 @@ const cards = [
     url: "https://a8dullah-k72.vercel.app/"
   },
   {
-    id: 4,
+    id: 5,
     name: "Interactive Portfolio",
     year: 2025,
     image: "/images/pfour.webp",
@@ -32,7 +40,7 @@ const cards = [
     url: "https://a8dullah-portfolio.vercel.app/"
   },
   {
-    id: 5,
+    id: 6,
     name: "Product Listing Site",
     year: 2025,
     image: "/images/pfive.webp",
@@ -40,7 +48,7 @@ const cards = [
     url: "https://a8dullah-ecom.vercel.app/"
   },
   {
-    id: 6,
+    id: 7,
     name: "Apexcify Technologys",
     year: 2025,
     image: "/images/psix.webp",
