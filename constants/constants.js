@@ -22,6 +22,13 @@ const cards = [
     image: "/images/linea.webp",
     description: "A modern architecture website showcasing innovative residential and commercial designs, client testimonials with smooth scrolling and interactive sections.",
     url: "https://linea-architects.vercel.app/"
+  }, {
+    id: 9,
+    name: "Void Studios",
+    year: 2026,
+    image: "/images/void.webp",
+    description: "Architectural portfolio project showcasing a modern, responsive website built with React and GSAP, featuring smooth scroll-based animations, sticky section transitions, and interactive process storytelling for an immersive visual experience",
+    url: "https://void-architects.vercel.app/"
   },
   {
     id: 4,
