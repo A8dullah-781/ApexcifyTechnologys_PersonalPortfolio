@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import emailjs from "@emailjs/browser";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -23,6 +24,26 @@ const Contact = () => {
     });
   }, []);
 
+  // 👉 EMAILJS FUNCTION (added only)
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm(
+      "service_nsdsm7u",
+      "template_5fe9hyr",
+      e.target,
+      "M57wvTXlNURFmUFXx"
+    ).then(
+      () => {
+        alert("Email sent successfully");
+      },
+      (error) => {
+        console.log(error.text);
+        alert("Failed to send Email");
+      }
+    );
+  };
+
   return (
     <div className="flex lg:flex-row lg:gap-0 gap-12 flex-col py-5 md:py-0 mx-[7.5vw]">
       <div className="flex lg:flex-col md:flex-row flex-col justify-center items-start lg:h-[100vh] lg:w-1/2">
@@ -45,22 +66,24 @@ const Contact = () => {
       <div className="flex justify-center items-center lg:h-[100vh] lg:w-1/2">
         <form
           className="lg:w-[40vw] w-[80vw] flex flex-col gap-4"
-          action="https://formsubmit.co/abdullah781.work@gmail.com"
-          method="POST"
+          onSubmit={sendEmail}
         >
           <input
             type="text"
+            name="name"
             placeholder="Your Name"
             className="glass formInput w-full px-4 py-3 text-white placeholder-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-white/40"
           />
 
           <input
             type="email"
+            name="email"
             placeholder="Your Email"
             className="glass formInput w-full px-4 py-3 text-white placeholder-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-white/40"
           />
 
           <textarea
+            name="message"
             placeholder="Your Message"
             rows="5"
             className="glassc formInput w-full px-4 py-3 text-white placeholder-gray-300 outline-none focus:ring-2 focus:ring-white/40 resize-none"
