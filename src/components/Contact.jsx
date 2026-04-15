@@ -35,7 +35,7 @@ const Contact = () => {
       "M57wvTXlNURFmUFXx"
     ).then(
       () => {
-        alert("Email sent successfully");
+        alert("Email sent successfully, We will get back to you in next 24-48 hours.");
       },
       (error) => {
         console.log(error.text);
