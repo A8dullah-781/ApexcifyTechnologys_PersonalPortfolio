@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import emailjs from "@emailjs/browser";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -24,24 +23,9 @@ const Contact = () => {
     });
   }, []);
 
-  // 👉 EMAILJS FUNCTION (added only)
   const sendEmail = (e) => {
     e.preventDefault();
-
-    emailjs.sendForm(
-      "service_nsdsm7u",
-      "template_5fe9hyr",
-      e.target,
-      "M57wvTXlNURFmUFXx"
-    ).then(
-      () => {
-        alert("Email sent successfully, We will get back to you in next 24-48 hours.");
-      },
-      (error) => {
-        console.log(error.text);
-        alert("Failed to send Email");
-      }
-    );
+    alert("Form submitted!");
   };
 
   return (
